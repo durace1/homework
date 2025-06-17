@@ -1,3 +1,4 @@
+import { expect } from '@playwright/test';
 export class MainPage {
     constructor(page) {
         this.page = page;
@@ -6,6 +7,7 @@ export class MainPage {
         this.profileNameField = page.getByRole('navigation')
         this.firstTag = page.locator('//button[@class="tag-pill tag-default"][1]');
         this.firstArticleTag = page.locator('//div[@class="article-preview"][1]//li[@class="tag-default tag-pill tag-outline"][1]')
+        
     };
 
     async open() {
@@ -17,6 +19,10 @@ export class MainPage {
     }
     async gotoLogin() {
         await this.loginButton.click();
+    };
+
+    async verifyLoginLinkIsVisible() {
+        await expect(this.loginButton).toBeVisible();
     };
 
     async tagFiltering() {

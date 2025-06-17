@@ -1,3 +1,4 @@
+import { expect } from '@playwright/test';
 export class NewArticlePage {
     constructor (page) {
         this.page = page;
@@ -7,6 +8,7 @@ export class NewArticlePage {
         this.contentArticle = page.getByRole('textbox', { name: 'Write your article (in' });
         this.tagsArticle = page.getByRole('textbox', { name: 'Enter tags' });
         this.createArticleButton = page.getByRole('button', { name: 'Publish Article' });
+        this.editArticleButton = page.getByRole('button', { name: '  Edit Article' }).first();
     }
 
 
@@ -14,6 +16,9 @@ export class NewArticlePage {
         await this.page.goto('https://realworld.qa.guru/#/editor');
     }
 
+    async verifyArticleCreated() {
+        await expect(this.editArticleButton).toBeVisible();
+    }
 
     async newArticle(randomArticle) {
         const {title, info, content, tag} = randomArticle;
