@@ -1,4 +1,3 @@
-import { expect } from '@playwright/test';
 export class GlobalFeedPage {
     constructor(page) {
         this.page = page;
