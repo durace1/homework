@@ -15,11 +15,11 @@ export class NewArticlePage {
     async open() {
         await this.page.goto('https://realworld.qa.guru/#/editor');
     }
-
+/*
     async verifyArticleCreated() {
         await expect(this.editArticleButton).toBeVisible();
     }
-
+*/
     async newArticle(randomArticle) {
         const {title, info, content, tag} = randomArticle;
         await this.articleTitle.click();

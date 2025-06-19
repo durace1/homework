@@ -10,11 +10,11 @@ export class GlobalFeedPage {
     async likeArticle () {
         await this.likeArticleButton.first().click()
     }
-
+/*
     async verifyArticleLiked() {
         await expect(this.likedArticleCounter).toBeVisible();
     }
-
+*/
     async open () {
         await this.globalFeedPage.click();
     };

@@ -29,7 +29,7 @@ test ('Создание статьи', async ({page})=> {
     //Создаем статью
     await app.newArticle.open();
     await app.newArticle.newArticle(randomArticle);
-    await app.newArticle.verifyArticleCreated();
+    await expect(app.newArticle.editArticleButton).toBeVisible();
 })
 
 test ('Поставить лайк статье', async ({page})=> {
@@ -58,14 +58,13 @@ test ('Поставить лайк статье', async ({page})=> {
     //Создаем статью
     await app.newArticle.open();
     await app.newArticle.newArticle(randomArticle);
-    await app.newArticle.verifyArticleCreated();
+    await expect(app.newArticle.editArticleButton).toBeVisible();
 
     //Поставим лайк статье
     await app.main.open();
     await app.globalFeed.open();
     await app.globalFeed.likeArticle();
-    await page.waitForTimeout(6000);
-    await app.globalFeed.verifyArticleLiked();
+    await expect(app.globalFeed.likedArticleCounter).toBeVisible();
 })
 
 test ('Отфильтровать статью по тегу из списка', async ({page})=> {

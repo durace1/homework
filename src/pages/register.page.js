@@ -20,11 +20,11 @@ export class RegisterPage {
         await this.passwordField.fill(password); 
         await this.signupButton.click();
     }
-
+/*
     async verifyLoginError() {
         await expect(this.errorMessage).toContainText('Wrong email/password combination');
     }
-
+*/
     async login(randomUser) {
         const { email, password } = randomUser;
         await this.emailField.click();

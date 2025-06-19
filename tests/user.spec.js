@@ -19,10 +19,10 @@ test ('Возможность логаута пользователя', async ({
 
     //Логаутимся
     await app.settings.clickLogoutButton();
-    await app.main.verifyLoginLinkIsVisible();
+    await expect(app.main.loginButton).toBeVisible();
 })
 
-test.only ('Смена пароля у пользователя', async ({page})=> {
+test ('Смена пароля у пользователя', async ({page})=> {
     //Генерим пользователя
     const randomUser = new UserBuilder()
         .addEmail()
@@ -45,14 +45,13 @@ test.only ('Смена пароля у пользователя', async ({page})
     await expect(app.settings.updateSettingsButton).toBeHidden()
 
     //Выходим (без таймаута некорректно происходит логаут)
-    await page.waitForTimeout(6000);
     await app.settings.clickLogoutButton();
 
     //Пробуем зайти со старым паролем
     await app.main.open();
     await app.main.gotoLogin();
     await app.register.login(randomUser);
-    await app.register.verifyLoginError();
+    await expect(app.register.errorMessage).toContainText('Wrong email/password combination');
 
     //Пробуем зайти с новым паролем
     await app.main.open();
