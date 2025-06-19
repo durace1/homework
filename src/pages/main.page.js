@@ -20,11 +20,7 @@ export class MainPage {
     async gotoLogin() {
         await this.loginButton.click();
     };
-/*
-    async verifyLoginLinkIsVisible() {
-        await expect(this.loginButton).toBeVisible();
-    };
-*/
+
     async tagFiltering() {
         await this.firstTag.click();
     }
