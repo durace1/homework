@@ -1,3 +1,4 @@
+import { expect } from '@playwright/test';
 export class RegisterPage {
     constructor(page) {
         this.page = page;
@@ -6,6 +7,7 @@ export class RegisterPage {
         this.passwordField = page.getByRole('textbox', { name: 'Password' });
         this.usernameField = page.getByRole('textbox', { name: 'Your Name' });
         this.loginButton = page.getByRole('button', { name: 'Login' });
+        this.errorMessage = page.getByRole('main');
     };
 
     async signup(randomUser) {

@@ -19,7 +19,7 @@ test ('Возможность логаута пользователя', async ({
 
     //Логаутимся
     await app.settings.clickLogoutButton();
-    await expect(page.getByRole('link', { name: ' Login' })).toBeVisible();
+    await expect(app.main.loginButton).toBeVisible();
 })
 
 test ('Смена пароля у пользователя', async ({page})=> {
@@ -44,12 +44,22 @@ test ('Смена пароля у пользователя', async ({page})=> {
     await app.settings.changePassword({password: newPassword});
     await expect(app.settings.updateSettingsButton).toBeHidden()
 
-    //Выходим
+    //Выходим (без таймаута некорректно происходит логаут)
     await app.settings.clickLogoutButton();
 
     //Пробуем зайти со старым паролем
+    await app.main.open();
     await app.main.gotoLogin();
     await app.register.login(randomUser);
-    await expect(page.getByRole('main')).toContainText('Wrong email/password combination');
+    await expect(app.register.errorMessage).toContainText('Wrong email/password combination');
+
+    //Пробуем зайти с новым паролем
+    await app.main.open();
+    await app.main.gotoLogin();
+    await app.register.login({
+        email: randomUser.email,
+        password: newPassword
+    })
+    await expect(app.main.profileNameField).toContainText(randomUser.username);
 })
 
