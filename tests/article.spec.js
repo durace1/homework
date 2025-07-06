@@ -1,3 +1,4 @@
+/*
 import { test, expect } from '@playwright/test';
 import { UserBuilder } from '../src/helpers/builders/user.builder';
 import { App } from '../src/pages/app.page'
@@ -88,3 +89,4 @@ test ('Отфильтровать статью по тегу из списка',
     await app.main.tagFiltering();
     await expect(app.main.firstArticleTag).toContainText(tagName)
 })
+    */

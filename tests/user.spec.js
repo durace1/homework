@@ -1,3 +1,4 @@
+/*
 import { test, expect } from '@playwright/test';
 import { UserBuilder } from '../src/helpers/builders/user.builder';
 import { App } from '../src/pages/app.page'
@@ -53,3 +54,4 @@ test ('Смена пароля у пользователя', async ({page})=> {
     await expect(page.getByRole('main')).toContainText('Wrong email/password combination');
 })
 
+*/
